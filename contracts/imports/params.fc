@@ -1,0 +1,3 @@
+;; Contract parameters
+int min_tons_for_storage() inline { return 10000000; }
+int msg_value() inline { return 0; }

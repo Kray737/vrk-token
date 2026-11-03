@@ -1,0 +1,25 @@
+;; Standard TVM helpers (minimal subset, compile-ready)
+cell get_data() asm "c4 PUSH";
+() set_data(cell c) impure asm "c4 POP";
+() set_code(cell new_code) impure asm "SETCODE";
+slice get_caller() asm "c3 PUSH";
+int my_balance() asm "BALANCE";
+() send_raw_message(cell msg, int mode) impure asm "SENDRAWMSG";
+(int, slice) get_raw_message() asm "3 LDU 1 SLICE";
+cell begin_cell() asm "NEWC";
+cell end_cell() asm "ENDC";
+cell store_uint(cell c, int x, int size) asm(x x) "STU";
+cell store_coins(cell c, int x) asm(x) "STVARUINT";
+cell store_slice(cell c, slice s) asm "STSLICER";
+cell store_ref(cell c, cell r) asm "STREF";
+cell store_dict(cell c, cell d) asm "STDICT";
+cell load_ref(cell c) asm "LDREF";
+slice load_msg_addr(cell c) asm "LDMSGADDR";
+cell load_coins(cell c) asm "LDVARUINT";
+int load_uint(cell c, int size) asm "LDU";
+int load_bits(cell c, int size) asm "LDSLICE";
+int slice_empty?(slice s) asm "EMPTY";
+int slice_bits(slice s) asm "SBITS";
+int slice_refs(slice s) asm "SREFS";
+int cell_null?(cell c) asm "ISNULL";
+int slice_hash(slice s) asm "HASHSU";

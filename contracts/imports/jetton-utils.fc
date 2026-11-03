@@ -1,0 +1,30 @@
+;; Jetton helpers
+const int gas_consumption = 15000000;
+const int forward_ton_amount = 1000000;
+
+int forward_count(slice in_msg_body) inline {
+    if (in_msg_body.slice_empty?()) { return 0; }
+    if (in_msg_body.preload_uint(1) == 0) { return 0; }
+    in_msg_body~load_bits(1);
+    int has_addr = in_msg_body~load_uint(1);
+    if (has_addr) { in_msg_body~load_msg_addr(); }
+    int has_amount = in_msg_body~load_uint(1);
+    if (has_amount) { in_msg_body~load_coins(); }
+    int has_body = in_msg_body~load_uint(1);
+    if (has_body) { in_msg_body~load_ref(); }
+    return 1;
+}
+
+slice calculate_jetton_wallet_address(slice owner_address, slice jetton_master_address) inline {
+    return begin_cell()
+        .store_uint(4, 3)
+        .store_int(0, 8)
+        .store_uint(calc_subwallet_id(jetton_master_address, owner_address), 32)
+        .store_slice(owner_address)
+        .end_cell()
+        .begin_parse();
+}
+
+int calc_subwallet_id(slice jetton_master_address, slice owner_address) inline {
+    return (jetton_master_address.cell_hash() % 120) + 10;
+}
