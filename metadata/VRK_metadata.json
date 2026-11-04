@@ -4,7 +4,22 @@
   "decimals": "9",
   "description": "Цифровой актив VRK, обеспеченный рублём. 1 VRK = 1 ₽. Обеспечение резервируется на кассовом кошельке.",
   "image": "https://raw.githubusercontent.com/Kray737/vrk-token/main/metadata/vrk-logo.png",
+  "image_data": {},
+  "attributes": [
+    {
+      "trait_type": "Symbol",
+      "value": "VRK"
+    },
+    {
+      "trait_type": "Reserve",
+      "value": "RUB-pegged"
+    },
+    {
+      "trait_type": "Network",
+      "value": "TON"
+    }
+  ],
   "uri": "https://vrk-token-wz5w130x.agent.mira.tg",
-  "social_image": "https://vrk-token-wz5w130x.agent.mira.tg",
+  "social_image": "https://raw.githubusercontent.com/Kray737/vrk-token/main/metadata/vrk-logo.png",
   "plugins": []
 }
